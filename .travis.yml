@@ -7,11 +7,13 @@ services:
 before_install:
 - chmod +x mvnw
 after_success:
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- echo $DOCKER_PASSWORD
+- echo $DOCKER_USERNAME
+- echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
 - ls -l
 - docker build -t bvassignment .
-- docker tag bvassignment bvassignment:latest
-- docker push r3ap3rpy/bvassignment:latest
+- docker tag bvassignment $DOCKER_USERNAME/bvassignment:latest
+- docker push $DOCKER_USERNAME/bvassignment:latest
 - docker images
 env:
   global:
