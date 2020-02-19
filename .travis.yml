@@ -6,12 +6,13 @@ services:
 - docker
 before_install:
 - chmod +x mvnw
+- ./mvnw clean install -B
 after_success:
 - echo $DOCKER_PASSWORD
 - echo $DOCKER_USERNAME
 - echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
 - pwd
-- ls -l
+- ls -l ./target
 - docker build -f ./Dockerfile -t bvassignment .
 - docker tag bvassignment $DOCKER_USERNAME/bvassignment:latest
 - docker push $DOCKER_USERNAME/bvassignment:latest
