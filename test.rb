@@ -9,5 +9,14 @@ end
 describe docker_image('bvassignment') do                    
     it { should exist }                                      
     its('tag') { should eq 'latest' }                        
-end                                                         
-                                           
+end          
+
+describe docker_container('r3ap3rpy/bvassignment:latest') do                    
+    it { should exist }                                      
+    it { should be_running  }                                                 
+end          
+
+describe command('curl http://0.0.0.0:8080') do 
+    its('stdout') {should eq 'Welcome to the v2 of my assignmenet from BetVictor!'}
+end
+
