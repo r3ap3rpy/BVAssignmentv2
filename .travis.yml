@@ -9,7 +9,7 @@ before_install:
 after_success:
 - echo $DOCKER_PASSWORD
 - echo $DOCKER_USERNAME
-- echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+- echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
 - ls -l
 - docker build -t bvassignment .
 - docker tag bvassignment $DOCKER_USERNAME/bvassignment:latest
