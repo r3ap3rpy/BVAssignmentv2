@@ -10,9 +10,9 @@ after_success:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - export TAG=latest
 - export IMAGE_NAME=r3ap3rpy/bvassignment
-- docker build -t $IMAGE_NAME .
+- docker build -t $IMAGE_NAME:$COMMIT .
 - docker tag $IMAGE_NAME $IMAGE_NAME:$TAG
-- docker push $IMAGE_NAME
+- docker push $IMAGE_NAME:$COMMIT
 env:
   global:
   - secure: MQknrDybipkJ1pOqxmW5Hn/nR+/bvz1zjG9Hg3DXQRisls55QoigIpBBi6mC6yWFgn8PdXZUeRJHq/iwiXAf4f4LDe3gP13tN7aG4+Fctn1J+fs1lzhWh2tgy1CHcuF+MZ5lbqBeXpL8QUh5QyyjsyHCo9RBJEF5A+vNZRDUPQ7fmI0VGHN6jqQRmxS9RKZ5KR3g2QdN8Wu8M2mgYVpwC+6pmJGQCqXgOwXDybAf4RpvQ2B3DnddrMVcBMdN/Da/EQUgr/ubFMaxwMm89yex/aWR7ypt6vUp8OQjc9ke1eLbo37N8RWgMnEyijG3rfHuBkNcr7Vzjq3SIk5mMFSwSoXMEKPfKA+OGv6Lp/0xTlMoSp4h00G1BiDRfMr3yuZLrZUUkijIkPoMgHL4w+U1ykJVJyYpuT1URDAWLr+oyrrETcmbDb8xFvW6qXDMH/vPkX3CQb+G7wCScIBQj02h8T7S+AI63WQ1KhcLWYbA0mV0seg2msZK3vmwzlyF5YbBtWgtZXFJdFx8qLNuJ8S/VR4+diG7F1U1n9OlCJzoGyREdQPFKJXa+1xUXEnpMi1L4adiQ4jrkXsihNj89rBrVkJM7L2OtxhArVQprFlSPE4UPCzKhnkCy37Uf0LkrVGpsZtBSjeQb8juYPznfdbMY6fSssFkRXguZpAFR09fBDE=
