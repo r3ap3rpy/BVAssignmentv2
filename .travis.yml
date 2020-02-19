@@ -13,7 +13,7 @@ after_success:
 - echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
 - docker build  -t bvassignment .
 - docker tag bvassignment $DOCKER_USERNAME/bvassignment:latest
+- docker images
 - inspec exec test.rb --chef-license=accept
-
 - if [[ $? -eq 0 ]];then docker push $DOCKER_USERNAME/bvassignment:latest; else echo "Scan failed!";exit -1; fi
 
