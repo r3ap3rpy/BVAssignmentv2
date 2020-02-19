@@ -13,7 +13,7 @@ after_success:
 - echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
 - pwd
 - ls -l ./target
-- docker build -f ./Dockerfile -t bvassignment .
+- docker build  -t bvassignment .
 - docker tag bvassignment $DOCKER_USERNAME/bvassignment:latest
 - docker push $DOCKER_USERNAME/bvassignment:latest
 - docker images
