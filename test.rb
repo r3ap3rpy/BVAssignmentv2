@@ -11,7 +11,17 @@ describe docker_image('bvassignment') do
     its('tag') { should eq 'latest' }                        
 end          
 
-describe command('curl http://localhost:8080') do 
-    its('stdout') {should eq 'Welcome to the v2 of my assignmenet from BetVictor!'}
+describe command('ausearch --input-logs -k docker | grep exec | grep user').stdout do
+    it { should be_empty }
+  end
+
+only_if { os.linux? }
+describe auditd do
+  its(:lines) { should include('-w /usr/bin/docker -p rwxa -k docker') }
+end
+describe service('auditd') do
+  it { should be_installed }
+  it { should be_enabled }
+  it { should be_running }
 end
 
