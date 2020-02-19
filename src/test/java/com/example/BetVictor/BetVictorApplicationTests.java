@@ -1,10 +1,10 @@
-package com.example.BVictor;
+package com.example.BetVictor;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BVictorApplicationTests {
+class BetVictorApplicationTests {
 
 	@Test
 	void contextLoads() {
