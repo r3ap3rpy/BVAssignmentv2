@@ -13,6 +13,6 @@ after_success:
 - echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
 - docker build  -t bvassignment .
 - docker tag bvassignment $DOCKER_USERNAME/bvassignment:latest
-- sudo inspec exec test.rb --chef-license yes
-- if [ $? -eq 0 ] ;then docker push $DOCKER_USERNAME/bvassignment:latest ;else exit -1 fi
+- echo "yes" | sudo inspec exec test.rb 
+- if [[ $? -eq 0 ]] ;then docker push $DOCKER_USERNAME/bvassignment:latest ;else exit -1 fi
 
