@@ -10,8 +10,8 @@ after_success:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - export TAG=latest
 - export IMAGE_NAME=r3ap3rpy/bvassignment
-- docker build -t $IMAGE_NAME:$COMMIT .
-- docker tag $IMAGE_NAME:$COMMIT $IMAGE_NAME:$TAG
+- docker build -t $IMAGE_NAME .
+- docker tag $IMAGE_NAME $IMAGE_NAME:$TAG
 - docker push $IMAGE_NAME
 env:
   global:
