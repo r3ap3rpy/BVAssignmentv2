@@ -7,10 +7,7 @@ services:
 before_install:
 - chmod +x mvnw
 after_success:
-- echo $DOCKER_PASSWORD
-- echo $DOCKER_USERNAME
-- echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-- ls -l
+- docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 - docker build -t bvassignment .
 - docker tag bvassignment $DOCKER_USERNAME/bvassignment:latest
 - docker push $DOCKER_USERNAME/bvassignment:latest
