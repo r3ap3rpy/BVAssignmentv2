@@ -28,12 +28,8 @@ describe file('/etc/docker') do
     it { should be_readable.by('owner') }
     it { should be_writable.by('owner') }
     it { should be_executable.by('owner') }
-    it { should be_readable.by('group') }
     it { should_not be_writable.by('group') }
-    it { should be_executable.by('group') }
-    it { should be_readable.by('other') }
     it { should_not be_writable.by('other') }
-    it { should be_executable.by('other') }
   end
   docker.containers.running?.ids.each do |id|
     container_info = docker.object(id)
