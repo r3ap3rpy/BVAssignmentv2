@@ -16,4 +16,9 @@ after_success:
 - docker run -d -it -p 8080:8080 $DOCKER_USERNAME/bvassignment:latest
 - inspec exec test.rb --chef-license=accept ; export CHECKRESULT=$?
 - if [ $CHECKRESULT -eq 0 ];then docker push $DOCKER_USERNAME/bvassignment:latest; else echo "Scan failed!";exit -1; fi
-
+notificaions:
+  email:
+    recipients:
+    - r3ap3rpy@gmail.com
+    on_success: always
+    on_failure: always
