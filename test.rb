@@ -1,6 +1,6 @@
 describe docker.version do                                  
-    its('Server.Version') {should cmp >= '19'}                 
-    its('Client.Version') {should cmp >= '19'}                 
+    its('Server.Version') {should cmp >= '17'}                 
+    its('Client.Version') {should cmp >= '17'}                 
    end                                                         
                                                                
    describe docker_image('openjdk') do                         
