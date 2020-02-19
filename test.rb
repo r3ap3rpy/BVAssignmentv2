@@ -11,7 +11,6 @@ describe docker_image('bvassignment') do
     its('tag') { should eq 'latest' }                        
 end          
 
-
 describe command('curl http://localhost:8080') do 
     its('stdout') {should eq 'Welcome to the v2 of my assignmenet from BetVictor!'}
 end

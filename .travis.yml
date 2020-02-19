@@ -14,6 +14,7 @@ after_success:
 - docker build  -t bvassignment .
 - docker tag bvassignment $DOCKER_USERNAME/bvassignment:latest
 - docker run -d -it -p 8080:8080 $DOCKER_USERNAME/bvassignment:latest
+- docker ps
 - inspec exec test.rb --chef-license=accept ; export CHECKRESULT=$?
 - if [ $CHECKRESULT -eq 0 ];then echo "Complex check passed, pushing to registry!";docker push $DOCKER_USERNAME/bvassignment:latest; else echo "Scan failed!";exit -1; fi
 
