@@ -1,5 +1,19 @@
- language: java
- jdk: oraclejdk8
- dist: trusty
- before_install:
-   - chmod +x mvnw
+language: java
+jdk: oraclejdk8
+sudo: required
+dist: trusty
+services:
+- docker
+before_install:
+- chmod +x mvnw
+env:
+  global:
+  - secure: cWhVV2EoRDf7BcG2EAYDYn0fl7URIUqYg8bWPF30j5vF9EGVrWuGHHqfaVpZC/QBFM0DHdVRLHA04ulbqi4XnR+Q7O8NTnwSCcq7l62NPXWAub/BUjY1JupJFo/okLdz6KuSR8jvBu1Pv5hcKCUHVFvDMjbj8jN1RKDy6Lj844WILdGVhmjXkodS0C4+H24ycP1edhB/MjSmmijz7SgtVhqQQrHdJnC8UUqyLbCyg5JtOioAVOfPu0/FC/Z81on1/eKvOuw2mcwzG6jFqyTmI2/B4pTdqWSE3WhJgszfTDByQpbM+ZG4sL75WL3HcibytoBK62OCLAblMd4tRB3A1d2mhhhcrIX5H0ykoi/OJ01szPiS/51M8GS44ucI3zT4CPHKZ1WoHM15zwzrai5shdZVEKgQp8N38mA6g7STaKCWIPX/YjwTxtmn8bdONZDriVVRpd9zI+gbi2P8wz9whsczKj+dhCEa6kuWKdzEITOU4NYAv6U1FKBT6U26aXLj535JR9WjL6LLCzXtti3wiC8FN1U6yBicxux/eWddXLR2V4H96hX2Kh7ZjIJRzKFgjnnnLQ7KiFcZPc/tu7q73ocihDoCQ1vfZKey9okummD4fqJ77gXmS0OpEeBsPNN+4L2mJtqNq+08IeaguzMzabvXC6UNkeXurEAVklZpNbg=
+  - secure: KzvCGmuYF1li32vTzR6CserFnskXwkX9nSy5aYZ8kxyj9Q4dVldKM2mren0njwvtbWUTbm1HcXX4Gqbv5qz/0KyeB+UeLtwaR/lcRbosZTi6bj9054JP3cCG9O/H4PTDpI7QKW590Mlyz1oB6X6vWyaSqEVKdG/JIJJIqpm4c7O0Ealvf/seDCALbuYOCZcRuHbk1Hn4BJTBKMKHLU21HZOFoLceYAY1N0tKJi7gpZixyjN3tAzmvDENIyIqpf6u3V+KI4NKhOrT3WYY0vXc2Q88mSFXAk7PWwHDDa7qBQThSTlghC6zdiF02YXYU6kzh2UXs9rObAB/oygdbzV3r6wAinIu4ybTc6Q8O0VJDcN3cpT+1gvY9Vz8/YxE7V5qQdyPwLK06pyw5D7vLp3ByQXTFHNG8QUHxptjdRED8KcDR48KQ5qVkV04jwhiywXQquCIfY/7WPyazZ1QEUzVC7hppOazuLgXSKwc7sBjEhtpzYt58dz9AZSwUZAXYKLGRXieK2t19DCLPf68/O9KJlMuS/cqB8NhNF9qKw0n+YIu162iKB4SFeNIv0lObok2wackucUFFlBKq6Roh2d5CWEcsvcuRausKMfqOoFHfsPISjrWd9H0C8ATokP35h0RxEl5oHZCPWa0a2H50v+SFp4Gy8D3q+Yafpw8uY8Dylk=
+after_success:
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- export TAG=latest
+- export IMAGE_NAME=r3ap3rpy/bvassignment
+- docker build -t $IMAGE_NAME:$COMMIT .
+- docker tag $IMAGE_NAME:$COMMIT $IMAGE_NAME:$TAG
+- docker push $IMAGE_NAME
